@@ -43,28 +43,17 @@ public class Reponse {
 
     // renvoie le statut du caractère
     private Lettre evaluationCaractere(char carCourant,int pos) {
-        if(estPresent(carCourant)){
-            if(estPlace(carCourant,pos)){
-                return Lettre.PLACEE;
-            }
-            return Lettre.NON_PLACEE;
+        if(this.motSecret.contains( "" + carCourant)){
+            return estPlace(carCourant, pos);
         }
         return Lettre.INCORRECTE;
     }
 
-    // le caractère est présent dans le mot secret
-    private boolean estPresent(char carCourant) {
-        char[] motSecretChars = this.motSecret.toCharArray();
-        for (char c : motSecretChars){
-            if( c == carCourant ){
-                return true;
-            }
-        }
-        return false;
-    }
-
     // le caractère est placé dans le mot secret
-    private boolean estPlace(char carCourant,int pos) {
-        return motSecret.charAt(pos) == carCourant;
+    private Lettre estPlace(char carCourant,int pos) {
+        if (motSecret.charAt(pos) == carCourant){
+         return Lettre.PLACEE;
+        }
+        return Lettre.NON_PLACEE;
     }
 }
